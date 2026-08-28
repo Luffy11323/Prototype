@@ -1,8 +1,8 @@
 import { createBrowserClient } from '@supabase/ssr';
 
 export const createClient = () => {
-  const url = process.env.NEXT_SUPABASE_URL;
-  const anonKey = process.env.NEXT_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !anonKey) {
     // Return a safe Proxy fallback to prevent "cannot read property of undefined" crashes when env vars are missing

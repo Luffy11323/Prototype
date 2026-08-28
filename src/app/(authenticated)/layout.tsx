@@ -16,7 +16,7 @@ export default async function AuthenticatedLayout({
   console.log('LAYOUT AUTH CHECK:', {
     hasUser: !!user,
     userEmail: user?.email,
-    url: process.env.NEXT_SUPABASE_URL ? 'DEFINED' : 'UNDEFINED',
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL ? 'DEFINED' : 'UNDEFINED',
   });
 
   if (!user) {
