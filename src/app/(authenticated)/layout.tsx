@@ -13,6 +13,12 @@ export default async function AuthenticatedLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
+  console.log('LAYOUT AUTH CHECK:', {
+    hasUser: !!user,
+    userEmail: user?.email,
+    url: process.env.NEXT_SUPABASE_URL ? 'DEFINED' : 'UNDEFINED',
+  });
+
   if (!user) {
     redirect('/login');
   }

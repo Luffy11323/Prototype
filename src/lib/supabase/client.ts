@@ -1,8 +1,8 @@
 import { createBrowserClient } from '@supabase/ssr';
 
 export const createClient = () => {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_SUPABASE_URL;
+  const anonKey = process.env.NEXT_SUPABASE_ANON_KEY;
 
   if (!url || !anonKey) {
     // Return a safe Proxy fallback to prevent "cannot read property of undefined" crashes when env vars are missing
@@ -14,7 +14,7 @@ export const createClient = () => {
             getSession: async () => ({ data: { session: null }, error: new Error('Supabase URL/Key missing') }),
             signInWithPassword: async () => ({ data: { user: null, session: null }, error: new Error('Supabase configuration is missing. Please restart your dev server after adding .env.local') }),
             signOut: async () => ({ error: null }),
-            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+            onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => { } } } }),
           };
         }
         if (prop === 'from') {
@@ -28,7 +28,7 @@ export const createClient = () => {
             }),
           });
         }
-        return () => {};
+        return () => { };
       }
     };
     return new Proxy({}, handler) as any;
