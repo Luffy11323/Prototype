@@ -363,7 +363,7 @@ export default function NewOrder() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Customer Selector card */}
-        <div className="rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-4">
+        <div className="relative z-30 rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-4">
           <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Customer Details</h2>
 
           {!isNewCustomer ? (
@@ -473,7 +473,7 @@ export default function NewOrder() {
         </div>
 
         {/* Items Card */}
-        <div className="rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-4">
+        <div className="relative z-20 rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Order Items</h2>
             <button
@@ -608,7 +608,7 @@ export default function NewOrder() {
         </div>
 
         {/* Notes Card */}
-        <div className="rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-3">
+        <div className="relative z-10 rounded-3xl border border-slate-900 bg-slate-900/30 p-5 backdrop-blur-xl space-y-3">
           <label className="block text-sm font-semibold text-slate-400 uppercase tracking-wider">Order Notes (Optional)</label>
           <textarea
             rows={2}

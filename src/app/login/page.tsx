@@ -27,12 +27,14 @@ export default function Login() {
 
       if (authError) {
         setError(authError.message);
+        setPassword('');
       } else {
         router.refresh();
         router.push('/dashboard');
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
+      setPassword('');
       console.error(err);
     } finally {
       setLoading(false);
@@ -101,7 +103,7 @@ export default function Login() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
