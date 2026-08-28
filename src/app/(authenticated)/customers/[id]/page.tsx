@@ -139,7 +139,7 @@ export default function CustomerDetails({ params }: { params: { id: string } }) 
 
         if (ordersError) throw ordersError;
 
-        const typedOrders = (ordersData || []).map((o: any) => ({
+        const typedOrders: Order[] = (ordersData || []).map((o: any) => ({
           id: o.id,
           created_at: o.created_at,
           status: o.status as Order['status'],
