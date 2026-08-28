@@ -12,6 +12,8 @@ export const createClient = () => {
           return {
             getUser: async () => ({ data: { user: null }, error: new Error('Supabase URL/Key missing') }),
             getSession: async () => ({ data: { session: null }, error: new Error('Supabase URL/Key missing') }),
+            signInWithPassword: async () => ({ data: { user: null, session: null }, error: new Error('Supabase configuration is missing. Please restart your dev server after adding .env.local') }),
+            signOut: async () => ({ error: null }),
             onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
           };
         }
