@@ -1,7 +1,7 @@
 'use main-site';
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import StatusBadge from '@/components/StatusBadge';
 import { generateWhatsAppMessage, generateWhatsAppLink } from '@/lib/whatsapp';
@@ -18,7 +18,6 @@ import {
   Sparkles,
   ShoppingBag,
 } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns'; // Wait, let's verify if we need date-fns. We can write a lightweight custom format function to avoid installing libraries! Custom is safer and faster.
 
 // Custom simple formatDistanceToNow
 function formatTimeAgo(dateString: string) {
@@ -115,7 +114,7 @@ export default function Dashboard() {
   const [showTopCustomers, setShowTopCustomers] = useState(false);
 
   // Fetch all orders with associated customers and items
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       const {
         data: { user },
@@ -203,7 +202,7 @@ export default function Dashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [supabase]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -230,7 +229,7 @@ export default function Dashboard() {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [supabase]);
+  }, [supabase, fetchDashboardData]);
 
   // Handle Order Status Update (Optimistic UI)
   const handleUpdateStatus = async (orderId: string, newStatus: Order['status']) => {
